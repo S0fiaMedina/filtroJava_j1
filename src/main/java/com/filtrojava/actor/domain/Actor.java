@@ -46,6 +46,16 @@ public class Actor {
         this.idGenero = idGenero;
     }
 
+    @Override
+    public String toString() {
+        return "Id: " + this.id + 
+            ", Nombre: " + this.nombre +
+            ", ID Nacionalidad: " + this.idNacionalidad +
+            ", edad: " + this.edad +
+            ", ID genero: " + this.idGenero
+            ;
+    }
+    
 
     
 }
