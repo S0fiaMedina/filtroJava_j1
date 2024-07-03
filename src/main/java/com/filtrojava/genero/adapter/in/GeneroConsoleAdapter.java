@@ -19,7 +19,7 @@ public class GeneroConsoleAdapter {
         "2. editar genero",
         "3. Eliminar genero",
         "4. Listar genero"
-
+        
     };
 
     
