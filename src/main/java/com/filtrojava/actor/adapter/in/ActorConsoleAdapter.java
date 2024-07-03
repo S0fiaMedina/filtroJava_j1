@@ -6,12 +6,22 @@ import java.util.Optional;
 import com.filtrojava.actor.application.ActorService;
 import com.filtrojava.actor.domain.Actor;
 import com.filtrojava.console.Util;
+import com.filtrojava.genero.application.GeneroService;
+import com.filtrojava.genero.domain.Genero;
+import com.filtrojava.pais.application.PaisService;
+import com.filtrojava.pais.domain.Pais;
 
 public class ActorConsoleAdapter {
     private final ActorService actorService;
+    private final PaisService paisService;
+    private final GeneroService generoService;
     
-    public ActorConsoleAdapter(ActorService actorService) {
+    
+
+    public ActorConsoleAdapter(ActorService actorService, PaisService paisService, GeneroService generoService) {
         this.actorService = actorService;
+        this.paisService = paisService;
+        this.generoService = generoService;
     }
 
     String[] opciones = {
@@ -21,6 +31,23 @@ public class ActorConsoleAdapter {
         "4. Listar Actor"
 
     };
+
+    private Genero selectGenero() {
+        List<Genero> generos = generoService.listarGeneros();
+        System.out.println("Seleccione un estado:");
+        generos.forEach(genero -> {System.out.println(genero);});
+        int selection = Util.getIntInput(null) - 1;
+        return generos.get(selection);
+    }
+
+    private Pais selectPais() {
+        List<Pais> paises = paisService.listarPaiss();
+        System.out.println("Seleccione un estado:");
+        paises.forEach(genero -> {System.out.println(genero);});
+        int selection = Util.getIntInput(null) - 1;
+        return paises.get(selection);
+    }
+
 
     public void start(){
         System.out.println("----------------> MENU DE ACTORES <---------------");
@@ -34,11 +61,15 @@ public class ActorConsoleAdapter {
                 System.out.println("... AGREGANDO ACTORES ");
                 String nombreNuevo = Util.getStringInput(">> Digite el nombre del Actor: ");
                 int edadNueva = Util.getIntInput(">> Digite la nueva edad: ");
+                Genero genero = selectGenero();
+                Pais pais = selectPais();
                 
         
                 Actor nuevoActor = new Actor();
                 nuevoActor.setNombre(nombreNuevo);
                 nuevoActor.setEdad(edadNueva);
+                nuevoActor.setIdGenero(genero.getId());
+                nuevoActor.setIdGenero(pais.getId());
                 this.actorService.agregarActor(nuevoActor);
             }
         
