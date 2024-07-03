@@ -30,7 +30,7 @@ public class generoRepositoryMySQL implements GeneroRepository{
             String query = "INSERT INTO genero(descripcion) VALUES (?)";
             try(PreparedStatement statement = connection.prepareStatement(query)){
                 statement.setString(1, genero.getDescripcion());
-                statement.executeQuery();
+                statement.executeUpdate();
 
             }
         } catch (Exception e) {
@@ -77,7 +77,7 @@ public class generoRepositoryMySQL implements GeneroRepository{
             try(PreparedStatement statement = connection.prepareStatement(query)){
                 ResultSet rs = statement.executeQuery();
 
-                statement.executeUpdate();
+                
                 while(rs.next()){
                     Genero genero = new Genero(
                         rs.getInt("id"), 
@@ -101,7 +101,7 @@ public class generoRepositoryMySQL implements GeneroRepository{
 
                 ResultSet rs = statement.executeQuery();
 
-                statement.executeUpdate();
+                
                 while(rs.next()){
                     Genero genero = new Genero(
                         rs.getInt("id"), 

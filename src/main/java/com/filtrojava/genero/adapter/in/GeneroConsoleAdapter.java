@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+import com.filtrojava.console.Util;
 import com.filtrojava.genero.application.GeneroService;
 import com.filtrojava.genero.domain.Genero;
 
@@ -26,35 +27,21 @@ public class GeneroConsoleAdapter {
 
     };
 
-    public int validateOption(){
-        while (true) {
-            try {
-                int op = sc.nextInt(); 
-                if (op >= 1 || op <= opciones.length){
-                    return op;
-                } else{
-                    System.out.println(">> Ingrese una opcion valida");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Ingrese un numero entero: ");
-            }
-        }
-    }
+    
 
     public void start(){
         System.out.println("----------------> MENU DE GENEROS <---------------");
         for (String opcion : opciones){
             System.out.println(opcion);
         }
-        System.out.println(">> Ingrese la opcion de su preferencia: ");
-        int op = this.validateOption();
+        int op = Util.validateOption(1, opciones.length);
 
         switch (op) {
             case 1:
                 
                 System.out.println("... AGREGANDO GENEROS ");
-                System.out.println(">> Digite la descripcion del genero: ");
-                String nombreNuevo = sc.nextLine();
+                String nombreNuevo = Util.getStringInput(">> Digite la descripcion del genero: ");
+
 
                 Genero nuevoGenero = new Genero();
                 nuevoGenero.setDescripcion(nombreNuevo);
@@ -63,15 +50,14 @@ public class GeneroConsoleAdapter {
         
             case 2:
                 System.out.println("... EDITANDO GENEROS ");
-                System.out.println(">> Digite el id del genero: ");
-                int idEditar = sc.nextInt();
+                int idEditar = Util.getIntInput(">> Ingresa el id del genero a editar: ");
 
                 Optional<Genero> generoOpcional = this.generoService.encontrarPorId(idEditar);
                 
                 generoOpcional.ifPresentOrElse(
                     generoEncontrado -> {
-                        System.out.println(">> Digite la  nueva descripcion del genero: ");
-                        String nuevaDescripcion = sc.nextLine();
+                        String nuevaDescripcion = Util.getStringInput(">> Digite la nueva descripcion del genero: ");
+
                         
                         generoEncontrado.setDescripcion(nuevaDescripcion);
                         this.generoService.editarGenero(generoEncontrado);
@@ -83,6 +69,22 @@ public class GeneroConsoleAdapter {
                         }
                     );
                
+                break;
+
+                case 3:
+                    System.out.println("... ELIMINANDO GENEROS ");
+                    int idEliminar = Util.getIntInput(">> Ingresa el id del genero a editar: ");
+
+                    Optional<Genero> generoAEliminar = this.generoService.encontrarPorId(idEliminar);
+                    
+                    generoAEliminar.ifPresentOrElse(
+                        generoEncontrado -> {
+                            this.generoService.eliminarGenero(idEliminar);
+                        }, 
+                            () -> {
+                                System.out.println("El genero no ha sido encontrado");
+                            }
+                        );
                 break;
                 
                 case 4: 

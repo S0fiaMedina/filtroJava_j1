@@ -36,6 +36,9 @@ public class Genero {
     }
 
     
-
+    @Override
+    public String toString() {
+        return "Id: " + this.id  + ", Nombre: " + this.name;
+    }
     
 }
