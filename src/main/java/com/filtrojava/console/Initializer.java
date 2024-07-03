@@ -8,6 +8,10 @@ import com.filtrojava.genero.adapter.in.GeneroConsoleAdapter;
 import com.filtrojava.genero.adapter.out.generoRepositoryMySQL;
 import com.filtrojava.genero.application.GeneroService;
 import com.filtrojava.genero.infrastructure.GeneroRepository;
+import com.filtrojava.pais.adapter.in.PaisConsoleAdapter;
+import com.filtrojava.pais.adapter.out.PaisRepositoryMySQL;
+import com.filtrojava.pais.application.PaisService;
+import com.filtrojava.pais.infrastructure.PaisRepository;
 import com.filtrojava.pelicula.adapter.in.PeliculaConsoleAdapter;
 import com.filtrojava.pelicula.adapter.out.PeliculaMySQLRepository;
 import com.filtrojava.pelicula.application.PeliculaService;
@@ -26,12 +30,14 @@ public class Initializer {
     private final FormatoRepository formatoRepository;
     private final TipoActorRepository tipoActorRepository;
     private final PeliculaRepository peliculaRepository;
+    private final PaisRepository paisRepository;
 
     public Initializer() {
         this.generoRepository = new generoRepositoryMySQL(url, user, password);
         this.formatoRepository = new FormatoRepositoryMySQL(url, user, password);
         this.peliculaRepository = new PeliculaMySQLRepository(url, user, password);
         this.tipoActorRepository = new TipoActorMySQLRepository(url, user, password);
+        this.paisRepository = new PaisRepositoryMySQL(url, user, password);
     }
 
 
@@ -45,7 +51,10 @@ public class Initializer {
         return new FormatoConsoleAdapter(formatoService);
     }
 
-
+    public PaisConsoleAdapter startPaisModulo(){
+        PaisService paisService = new PaisService(paisRepository);
+        return new PaisConsoleAdapter(paisService);
+    }
 
     public TipoActorConsoleAdapter startTipoActorModule(){
         TipoActorService tipoActorService = new TipoActorService(tipoActorRepository);
@@ -56,6 +65,9 @@ public class Initializer {
         PeliculaService peliculaService = new PeliculaService(peliculaRepository);
         return new PeliculaConsoleAdapter(peliculaService);
     }
+
+   
+
 
     
 

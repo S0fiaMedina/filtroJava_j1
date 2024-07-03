@@ -2,7 +2,9 @@ package com.filtrojava;
 
 import com.filtrojava.console.Initializer;
 import com.filtrojava.console.Util;
+import com.filtrojava.formato.adapter.in.FormatoConsoleAdapter;
 import com.filtrojava.genero.adapter.in.GeneroConsoleAdapter;
+import com.filtrojava.pais.adapter.in.PaisConsoleAdapter;
 import com.filtrojava.pelicula.adapter.in.PeliculaConsoleAdapter;
 import com.filtrojava.tipoActor.adapter.in.TipoActorConsoleAdapter;
 
@@ -13,6 +15,9 @@ public class Main {
         GeneroConsoleAdapter generoConsoleAdapter= initializer.startGeneroModule();
         TipoActorConsoleAdapter tipoActorConsoleAdapter = initializer.startTipoActorModule();
         PeliculaConsoleAdapter peliculaConsoleAdapter = initializer.startPeliculaModule();
+        PaisConsoleAdapter paisConsoleAdapter = initializer.startPaisModulo();
+        FormatoConsoleAdapter formatoConsoleAdapter = initializer.startFormatoModule();
+
 
         /*
          * root - clave
@@ -40,6 +45,7 @@ public class Main {
             int op = Util.validateOption(1, opciones.length);
             switch (op) {
                 case 1:
+                System.out.println("No implementado.");
                     
                 break;
             
@@ -48,11 +54,11 @@ public class Main {
                 break;
 
                 case 3:
-                    
+                    formatoConsoleAdapter.start();
                 break;
         
                 case 4:
-                
+                    System.out.println("No implementado.");
                 break;
 
                 case 5:
@@ -60,7 +66,7 @@ public class Main {
                 break;
             
                 case 6:
-                    
+                    paisConsoleAdapter.start();
                 break;
                 
                 case 7:
@@ -68,11 +74,13 @@ public class Main {
                 break;
         
                 case 8:
-                
+                    System.out.println("No implementado.");
+
                 break;
 
                 case 9:
-                
+                    System.out.println("No implementado.");
+
                 break;
 
                 case 10:
