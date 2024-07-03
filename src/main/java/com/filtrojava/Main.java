@@ -3,6 +3,7 @@ package com.filtrojava;
 import com.filtrojava.console.Initializer;
 import com.filtrojava.console.Util;
 import com.filtrojava.genero.adapter.in.GeneroConsoleAdapter;
+import com.filtrojava.pelicula.adapter.in.PeliculaConsoleAdapter;
 import com.filtrojava.tipoActor.adapter.in.TipoActorConsoleAdapter;
 
 public class Main {
@@ -11,11 +12,16 @@ public class Main {
 
         GeneroConsoleAdapter generoConsoleAdapter= initializer.startGeneroModule();
         TipoActorConsoleAdapter tipoActorConsoleAdapter = initializer.startTipoActorModule();
+        PeliculaConsoleAdapter peliculaConsoleAdapter = initializer.startPeliculaModule();
 
+        /*
+         * root - clave
+         * 123456 - clave
+        */
         String[] opciones = {
             "1: Gestión de Actores",
-           " 2: Gestión de Películas",
-           " 3: Gestión de Formatos",
+           "2: Gestión de Películas",
+           "3: Gestión de Formatos",
            "4: Asignación de Actores a Películas",
            "5: Gestión de Géneros",
            "6: Gestión de Países",
@@ -38,7 +44,7 @@ public class Main {
                 break;
             
                 case 2:
-                
+                    peliculaConsoleAdapter.start();
                 break;
 
                 case 3:

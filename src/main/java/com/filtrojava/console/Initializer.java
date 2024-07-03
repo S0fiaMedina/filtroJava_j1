@@ -8,6 +8,10 @@ import com.filtrojava.genero.adapter.in.GeneroConsoleAdapter;
 import com.filtrojava.genero.adapter.out.generoRepositoryMySQL;
 import com.filtrojava.genero.application.GeneroService;
 import com.filtrojava.genero.infrastructure.GeneroRepository;
+import com.filtrojava.pelicula.adapter.in.PeliculaConsoleAdapter;
+import com.filtrojava.pelicula.adapter.out.PeliculaMySQLRepository;
+import com.filtrojava.pelicula.application.PeliculaService;
+import com.filtrojava.pelicula.infrastructure.PeliculaRepository;
 import com.filtrojava.tipoActor.adapter.in.TipoActorConsoleAdapter;
 import com.filtrojava.tipoActor.adapter.out.TipoActorMySQLRepository;
 import com.filtrojava.tipoActor.application.TipoActorService;
@@ -21,11 +25,12 @@ public class Initializer {
     private final GeneroRepository generoRepository;
     private final FormatoRepository formatoRepository;
     private final TipoActorRepository tipoActorRepository;
+    private final PeliculaRepository peliculaRepository;
 
     public Initializer() {
         this.generoRepository = new generoRepositoryMySQL(url, user, password);
         this.formatoRepository = new FormatoRepositoryMySQL(url, user, password);
-
+        this.peliculaRepository = new PeliculaMySQLRepository(url, user, password);
         this.tipoActorRepository = new TipoActorMySQLRepository(url, user, password);
     }
 
@@ -45,6 +50,11 @@ public class Initializer {
     public TipoActorConsoleAdapter startTipoActorModule(){
         TipoActorService tipoActorService = new TipoActorService(tipoActorRepository);
         return new TipoActorConsoleAdapter(tipoActorService);
+    }
+
+    public PeliculaConsoleAdapter startPeliculaModule(){
+        PeliculaService peliculaService = new PeliculaService(peliculaRepository);
+        return new PeliculaConsoleAdapter(peliculaService);
     }
 
     
