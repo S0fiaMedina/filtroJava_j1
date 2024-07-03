@@ -23,8 +23,8 @@ import com.filtrojava.tipoActor.infrastructure.TipoActorRepository;
 
 public class Initializer {
     String url =  "jdbc:mysql://localhost:3306/cineCampus";
-    String user = "campus2023";
-    String password = "campus2023";
+    String user = "root";
+    String password = "123456";
 
     private final GeneroRepository generoRepository;
     private final FormatoRepository formatoRepository;
