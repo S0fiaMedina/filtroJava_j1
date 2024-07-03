@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
 import com.filtrojava.tipoActor.domain.TipoActor;
 import com.filtrojava.tipoActor.infrastructure.TipoActorRepository;
 
@@ -41,7 +40,7 @@ public class TipoActorMySQLRepository implements TipoActorRepository{
     @Override
     public void editar(TipoActor tipoActor) {
         try (Connection connection = DriverManager.getConnection(url, user, password)){
-            String query = "UPDATE  tipo_actor SET descripcion = ? WHERE id = ?";
+            String query = "UPDATE  tipoactor SET descripcion = ? WHERE id = ?";
             try(PreparedStatement statement = connection.prepareStatement(query)){
                 statement.setString(1, tipoActor.getDescripcion());
                 statement.setInt(2, tipoActor.getId());
@@ -57,7 +56,7 @@ public class TipoActorMySQLRepository implements TipoActorRepository{
     @Override
     public void eliminar(int id) {
         try (Connection connection = DriverManager.getConnection(url, user, password)){
-            String query = "DELETE FROM tipo_actor  WHERE id = ?";
+            String query = "DELETE FROM tipoactor  WHERE id = ?";
             try(PreparedStatement statement = connection.prepareStatement(query)){
                 statement.setInt(1, id);
 
@@ -73,7 +72,7 @@ public class TipoActorMySQLRepository implements TipoActorRepository{
     public List<TipoActor> listar() {
         List<TipoActor> tipoActores = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(url, user, password)){
-            String query = "SELECT id, descripcion FROM tipo_actor";
+            String query = "SELECT id, descripcion FROM tipoactor";
             try(PreparedStatement statement = connection.prepareStatement(query)){
                 ResultSet rs = statement.executeQuery();
 
@@ -95,7 +94,7 @@ public class TipoActorMySQLRepository implements TipoActorRepository{
     @Override
     public Optional<TipoActor> encontrarPorId(int id) {
         try (Connection connection = DriverManager.getConnection(url, user, password)){
-            String query = "SELECT id, descripcion FROM tipo_actor WHERE id = ?";
+            String query = "SELECT id, descripcion FROM tipoactor WHERE id = ?";
             try(PreparedStatement statement = connection.prepareStatement(query)){
                 statement.setInt(1, id);
 

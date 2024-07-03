@@ -9,7 +9,7 @@ import com.filtrojava.tipoActor.domain.TipoActor;
 
 
 public class TipoActorConsoleAdapter {
-    private TipoActorService tipoActorService;
+    private final TipoActorService tipoActorService;
     
     
 
@@ -38,76 +38,71 @@ public class TipoActorConsoleAdapter {
         int op = Util.validateOption(1, opciones.length);
 
         switch (op) {
-            case 1:
-                
+            case 1 -> {
                 System.out.println("... AGREGANDO TIPOS DE ACTORES ");
                 String nombreNuevo = Util.getStringInput(">> Digite la descripcion del tipoActor: ");
-
-
+                
+                
                 TipoActor nuevoTipoActor = new TipoActor();
                 nuevoTipoActor.setDescripcion(nombreNuevo);
                 this.tipoActorService.agregarTipoActor(nuevoTipoActor);
-                break;
+            }
         
-            case 2:
+            case 2 -> {
                 System.out.println("... EDITANDO TIPOS DE ACTORES ");
                 int idEditar = Util.getIntInput(">> Ingresa el id del tipoActor a editar: ");
 
                 Optional<TipoActor> tipoActorOpcional = this.tipoActorService.encontrarPorId(idEditar);
                 
                 tipoActorOpcional.ifPresentOrElse(
-                    tipoActorEncontrado -> {
-                        String nuevaDescripcion = Util.getStringInput(">> Digite la nueva descripcion del tipo de actor: ");
-
-                        
-                        tipoActorEncontrado.setDescripcion(nuevaDescripcion);
-                        this.tipoActorService.editarTipoActor(tipoActorEncontrado);
-
-
-                    }, 
+                        tipoActorEncontrado -> {
+                            String nuevaDescripcion = Util.getStringInput(">> Digite la nueva descripcion del tipo de actor: ");
+                            
+                            
+                            tipoActorEncontrado.setDescripcion(nuevaDescripcion);
+                            this.tipoActorService.editarTipoActor(tipoActorEncontrado);
+                            
+                            
+                        }, 
                         () -> {
                             System.out.println("El tipoActor no ha sido encontrado");
                         }
-                    );
-               
-                break;
+                );
+            }
 
-                case 3:
+                case 3 -> {
                     System.out.println("... ELIMINANDO TIPOS DE ACTORES ");
                     int idEliminar = Util.getIntInput(">> Ingresa el id del tipo de actor a editar: ");
 
                     Optional<TipoActor> tipoActorAEliminar = this.tipoActorService.encontrarPorId(idEliminar);
                     
                     tipoActorAEliminar.ifPresentOrElse(
-                        tipoActorEncontrado -> {
-                            this.tipoActorService.eliminarTipoActor(idEliminar);
-                        }, 
+                            tipoActorEncontrado -> {
+                                this.tipoActorService.eliminarTipoActor(idEliminar);
+                            }, 
                             () -> {
                                 System.out.println("El tipoActor no ha sido encontrado");
                             }
-                        );
-                break;
+                    );
+            }
                 
-                case 4: 
-
+                case 4 -> {
                     System.out.println("... LISTANDO TIPOS DE ACTORES ");
                     System.out.println("----------> TIPOS DE ACTORES DISPONIBLES <-------");
                    
                     List<TipoActor> tipoActorsEncontrados =  this.tipoActorService.listarTipoActores();
 
-                    if (tipoActorsEncontrados.isEmpty() || tipoActorsEncontrados == null){
+                    if (tipoActorsEncontrados.isEmpty()){
                         System.out.println(">> No hay tipos de actores registrados ");
                     } else {
                         tipoActorsEncontrados.forEach(
-                            tipoActor -> {System.out.println(tipoActor);}
+                                tipoActor -> {System.out.println(tipoActor);}
                         );
                     }
-                    
-            
-                break;
+            }
 
-                case 5:
-                break;
+                case 5 -> {
+            }
         }
     }
 }
