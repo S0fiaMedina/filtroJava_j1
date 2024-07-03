@@ -1,16 +1,16 @@
-package com.filtrojava.genero.domain;
+package com.filtrojava.pais.domain;
 
-public class Genero {
+public class Pais {
     private int id;
     private String descripcion;
 
     
 
-    public Genero() {
+    public Pais() {
     }
 
 
-    public Genero(int id, String descripcion) {
+    public Pais(int id, String descripcion) {
         this.id = id;
         this.descripcion = descripcion;
     }
