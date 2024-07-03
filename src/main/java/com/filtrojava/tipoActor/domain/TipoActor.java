@@ -1,16 +1,16 @@
-package com.filtrojava.genero.domain;
+package com.filtrojava.tipoActor.domain;
 
-public class Genero {
+public class TipoActor {
     private int id;
     private String descripcion;
 
     
 
-    public Genero() {
+    public TipoActor() {
     }
 
 
-    public Genero(int id, String descripcion) {
+    public TipoActor(int id, String descripcion) {
         this.id = id;
         this.descripcion = descripcion;
     }
