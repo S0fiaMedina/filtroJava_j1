@@ -83,7 +83,7 @@ public class PeliculaMySQLRepository implements PeliculaRepository{
     public List<Pelicula> listar() {
         List<Pelicula> peliculas = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(url, user, password)){
-            String query = "SELECT codinterno, nombre, duracion, sinopsis FROM pelicula";
+            String query = "SELECT id, codinterno, nombre, duracion, sinopsis FROM pelicula";
             try(PreparedStatement statement = connection.prepareStatement(query)){
                 ResultSet rs = statement.executeQuery();
 

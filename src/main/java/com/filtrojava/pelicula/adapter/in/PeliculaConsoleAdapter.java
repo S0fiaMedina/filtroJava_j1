@@ -65,11 +65,11 @@ public class PeliculaConsoleAdapter {
                             String sinopsisNueva = Util.getStringInput(">> Digite la sinopsis de la  Pelicula: ");       
                             
                             
-                            Pelicula nuevaPelicula = new Pelicula();
-                            nuevaPelicula.setNombre(nombreNuevo);
-                            nuevaPelicula.setCodigoInterno(codigoNuevo);
-                            nuevaPelicula.setDuracion(duracionNueva);
-                            nuevaPelicula.setSinopsis(sinopsisNueva);
+                            
+                            PeliculaEncontrado.setNombre(nombreNuevo);
+                            PeliculaEncontrado.setCodigoInterno(codigoNuevo);
+                            PeliculaEncontrado.setDuracion(duracionNueva);
+                            PeliculaEncontrado.setSinopsis(sinopsisNueva);
 
                             this.peliculaService.editarPelicula(PeliculaEncontrado);
                         }, 
@@ -96,8 +96,8 @@ public class PeliculaConsoleAdapter {
             }
                 
                 case 4 -> {
-                    System.out.println("... LISTANDO FORMATOS ");
-                    System.out.println("----------> FORMATOS DISPONIBLES <-------");
+                    System.out.println("... LISTANDO PELICULAS ");
+                    System.out.println("----------> PELICULAS DISPONIBLES <-------");
                    
                     List<Pelicula> PeliculasEncontrados =  this.peliculaService.listarPeliculas();
 
